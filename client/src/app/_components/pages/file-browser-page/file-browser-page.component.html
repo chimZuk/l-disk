@@ -1,0 +1,80 @@
+<div class="global-loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="component" *ngIf="!loading">
+    <mat-toolbar color="primary">
+
+        <mat-toolbar-row>
+            <button mat-flat-button (click)="toggleDrawer()" color="primary" style="margin-left: -16px; height: 64px;">
+                <mat-icon aria-label="Menu">menu</mat-icon>
+            </button>
+
+            <button mat-flat-button *ngIf="isHome" (click)="goHome()" color="warn" style="margin-right: 10px;">
+                <mat-icon aria-label="Home">home</mat-icon>
+            </button>
+            <button mat-flat-button *ngIf="!isHome" (click)="goHome()" color="warn" style="margin-right: 10px;">
+                <mat-icon aria-label="Home">keyboard_backspace</mat-icon>
+            </button>
+
+            <span>{{title}}</span>
+            <span class="spacer"></span>
+            <button mat-flat-button *ngIf="!mobileQuery.matches" color="warn" [matMenuTriggerFor]="profile_menu"
+                [disabled]="(mobileQuery.matches && drawer.opened)">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span style="margin-right: 5px;">{{auth.user.name}}</span>
+                    <div class="avatar" [ngStyle]="{'background-image': 'url(' + auth.user.pictureURL + ')'}"></div>
+                </div>
+            </button>
+
+            <button mat-fab *ngIf="mobileQuery.matches" color="warn" [matMenuTriggerFor]="profile_menu"
+                class="custom-button" [disabled]="(mobileQuery.matches && drawer.opened)">
+                <div class="avatar" [ngStyle]="{'background-image': 'url(' + auth.user.pictureURL + ')'}"></div>
+            </button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+    <mat-drawer-container autosize style="position: relative; height: calc(100% - 56px);">
+        <mat-drawer #drawer [mode]="mobileQuery.matches ? 'over' : 'side'" [disableClose]="!mobileQuery.matches"
+            [opened]="(mobileQuery.matches && drawer.opened) || (!mobileQuery.matches)">
+
+            <mat-nav-list style="padding-top: 0px !important;">
+
+                <mat-list-item (click)="menuAction('albums')"
+                    [ngClass]="{'current': pageName.indexOf('/albums') > -1 }">
+                    <mat-icon mat-list-icon>photo</mat-icon>
+                    <h4 mat-line *ngIf="isExpanded || mobileQuery.matches">{{lang.t("ma")}}</h4>
+                </mat-list-item>
+
+                <mat-list-item (click)="menuAction('shared')"
+                    [ngClass]="{'current': pageName.indexOf('/shared') > -1 }">
+                    <mat-icon mat-list-icon>folder_shared
+                    </mat-icon>
+                    <h4 mat-line *ngIf="isExpanded || mobileQuery.matches" style="padding-right: 20px;">{{lang.t("sh")}}</h4>
+                </mat-list-item>
+
+            </mat-nav-list>
+
+        </mat-drawer>
+
+        <div id="sideNavContent">
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-drawer-container>
+</div>
+
+<mat-menu #profile_menu="matMenu">
+    <button mat-menu-item (click)="popupAction('profile-info')">
+        <mat-icon>edit</mat-icon>
+        <span>{{lang.t("ep")}}</span>
+    </button>
+    <button mat-menu-item (click)="popupAction('profile-settings')">
+        <mat-icon>build</mat-icon>
+        <span>{{lang.t("eps")}}</span>
+    </button>
+    <button mat-menu-item (click)="auth.logout();">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>{{lang.t("lg")}}</span>
+    </button>
+</mat-menu>

@@ -1,0 +1,54 @@
+<div class="global-loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-progress-bar *ngIf="photos_loading" [mode]="fileUploadLoadingType" color="primary" [value]="fileUploadProgress"
+    class="loading-general">
+</mat-progress-bar>
+
+<div *ngIf="mobileQuery.matches" style="display: flex; flex-direction: column; padding: 2px 2px 0px 2px;">
+    <button mat-stroked-button (click)="fileInputMobile.click()" [disabled]="loading">
+        <mat-icon>add_photo_alternate</mat-icon><span> {{lang.t("up")}}</span>
+        <input id="files_2" #fileInputMobile type="file" (change)="uploadPhotos($event)" style="display:none;"
+            multiple />
+    </button>
+</div>
+
+<mat-card *ngIf="filesUploadArrayProgress.length != 0">
+    <h2>Upload Progress:</h2>
+    <div *ngFor="let photo of filesUploadArrayProgress">
+        <span>{{photo.status}} {{photo.name}}: {{photo.progress}}%
+            ({{(photo.size_up / 1024 / 1024).toFixed(2)}}MB/{{(photo.size / 1024 / 1024).toFixed(2)}}MB).</span>
+    </div>
+</mat-card>
+
+<div class="general-container photos-container" *ngIf="photos">
+    <div class="photo-card" *ngFor="let photo of photos; let i = index">
+        <div class="inner-loading" [id]="'load' + i" *ngIf="photo.loading && photo.viewed">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="picture-locker">
+        </div>
+
+        <img appLazyLoad [photo]="photo" [ngClass]="{'photo-card-hidden': photo.loading, 'card-kek': true }" (load)="onImageLoad(i)" [src]="url.api + 'api/small' + photo.url" />
+    </div>
+</div>
+
+<div class="general-container photos-container"
+    style="display: flex; align-items: center; justify-content: center; height: 50vh;"
+    *ngIf="filesUploadArrayProgress.length == 0 && photos?.length == 0">
+
+    <button mat-stroked-button style="display: flex; align-items: center; justify-content: center;"
+        (click)="fileInputNone.click()">
+        <mat-icon>add_photo_alternate</mat-icon>
+        <span> {{lang.t("up")}}</span>
+        <input id="files_3" #fileInputNone type="file" (change)="uploadPhotos($event)" style="display:none;" multiple />
+    </button>
+
+</div>
+
+<button mat-raised-button (click)="fileInput.click()" *ngIf="!mobileQuery.matches && photos?.length != 0" color="warn"
+    style="position: fixed; bottom: 20px; left: 90px; padding: 10px 20px; border-radius: 50px; display: flex; justify-content: center; align-items: center;">
+    <mat-icon>add_photo_alternate</mat-icon> <span> {{lang.t("up")}}</span>
+    <input id="files_1" #fileInput type="file" (change)="uploadPhotos($event)" style="display:none;" multiple />
+</button>

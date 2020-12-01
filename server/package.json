@@ -1,0 +1,36 @@
+{
+  "name": "photo-hosting-server",
+  "version": "1.0.0",
+  "description": "Private photo-sharing server",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "pm2 start app.js",
+    "restart": "pm2 restart app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chimZuk/photo-hosting-server.git"
+  },
+  "author": "chimZuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chimZuk/photo-hosting-server/issues"
+  },
+  "homepage": "https://github.com/chimZuk/photo-hosting-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "formidable": "^1.2.1",
+    "image-size": "^0.8.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.8.9",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "rimraf": "^3.0.0",
+    "sharp": "^0.23.4",
+    "socket.io": "^2.3.0"
+  }
+}

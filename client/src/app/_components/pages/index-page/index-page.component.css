@@ -1,0 +1,10 @@
+.component {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../../../assets/img/back.jpg");
+    background-position: center;
+    background-size: cover;
+}

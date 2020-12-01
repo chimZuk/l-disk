@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> Welcome | Photo Sharing Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+
+<body>
+    <input id="image-file" type="file" multiple />
+    <p id="result"></p>
+    <button onclick="uploadPhotos();">Upload lol!</button>
+
+    <script>
+        function uploadPhotos() {
+            var photo = document.getElementById("image-file").files;
+            var fd = new FormData();
+
+            for (var i = 0; i < photo.length; i++) {
+                var file_t = photo[i];
+                fd.append("albumID", "5e324e9a0c94f30fc6687f8a");
+                fd.append("files", file_t, file_t['name']);
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://photos.chimzuk.com/api/photos.upload', true);
+            xhr.setRequestHeader("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+            xhr.upload.addEventListener("progress", (e) => {
+                console.log(Math.round(e.loaded / e.total * 100) + "%");
+                document.getElementById("result").innerHTML = Math.round(e.loaded / e.total * 100) + "%";
+            });
+            xhr.addEventListener("load", (e) => {
+                console.log("100% Uploaded");
+                document.getElementById("result").innerHTML = "100% Uploaded";
+            });
+
+            xhr.send(fd);
+        }    
+    </script>
+</body>
+
+</html>

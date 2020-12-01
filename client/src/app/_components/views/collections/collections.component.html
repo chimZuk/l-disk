@@ -1,0 +1,58 @@
+<div class="global-loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-progress-bar *ngIf="album_loading" color="primary" mode="indeterminate" class="loading-general"></mat-progress-bar>
+
+<div *ngIf="mobileQuery.matches && albums?.length != 0"
+    style="display: flex; flex-direction: column; padding: 2px 2px 0px 2px;">
+    <button mat-stroked-button (click)="newFolder()" [disabled]="loading">
+        <mat-icon>add_to_photos</mat-icon><span> {{lang.t("ca")}}</span>
+    </button>
+</div>
+
+<div class="general-container albums-container" *ngIf="albums?.length != 0">
+    <mat-card *ngFor="let album of albums" class="album-card">
+        <img mat-card-image *ngIf="album.previewURL" (click)="openAlbum(album)" style="cursor: pointer;"
+            [src]="album.previewURL" [alt]="album.name">
+        <div class="letter-c" *ngIf="!album.previewURL" (click)="openAlbum(album)" style="cursor: pointer;">
+            <span class="letter">{{album.previewSign}}</span>
+        </div>
+        <mat-card-header matRipple (click)="openAlbum(album)" style="cursor: pointer;">
+            <div mat-card-avatar class="header-image"
+                [ngStyle]="{'background-image': 'url(' + auth.user.pictureURL + ')'}"></div>
+            <mat-card-title>{{album.name}}</mat-card-title>
+            <mat-card-subtitle>{{album.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="album-actions">
+            <div>
+                <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('eai')">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('da')"
+                    style="margin-left: 10px; margin-right: 10px;">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+            <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('sta')">
+                <mat-icon>share</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>
+
+<div class="general-container albums-container"
+    style="display: flex; align-items: center; justify-content: center; height: 50vh;" *ngIf="albums?.length == 0">
+
+    <button mat-stroked-button style="display: flex; align-items: center; justify-content: center;"
+        (click)="newFolder()">
+        <mat-icon>add_to_photos</mat-icon>
+        <span> {{lang.t("ca")}}</span>
+    </button>
+
+</div>
+
+
+<button mat-raised-button (click)="newFolder()" *ngIf="!mobileQuery.matches && albums?.length != 0" color="warn"
+    style="position: fixed; bottom: 20px; left: 90px; padding: 10px 20px; border-radius: 50px; display: flex; justify-content: center; align-items: center;">
+    <mat-icon>add_to_photos</mat-icon> <span> {{lang.t("ca")}}</span>
+</button>

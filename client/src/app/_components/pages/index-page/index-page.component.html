@@ -1,0 +1,36 @@
+<mat-progress-bar *ngIf="loading" color="primary" mode="indeterminate" class="loading-general"></mat-progress-bar>
+
+<div class="component">
+    <mat-card style="width: 300px;">
+        <form [formGroup]="auth_form" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;">
+
+            <mat-form-field appearance="outline" *ngIf="mode == 'register'">
+                <mat-label>{{lang.t("nm")}}</mat-label>
+                <input matInput type="text" autocomplete="name" [placeholder]="lang.t('enm')" formControlName="name"
+                    required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{lang.t("em")}}</mat-label>
+                <input matInput type="email" autocomplete="email" [placeholder]="lang.t('eem')" formControlName="email"
+                    required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{lang.t("ps")}}</mat-label>
+                <input matInput type="password" autocomplete="current-password" [placeholder]="lang.t('eeps')"
+                    formControlName="password" required>
+            </mat-form-field>
+
+            <button mat-raised-button *ngIf="mode == 'register'" color="primary" type="submit"
+                style="margin-bottom: 10px;" [disabled]="loading">{{lang.t("rgr")}}</button>
+            <button mat-raised-button *ngIf="mode == 'login'" color="primary" type="submit" style="margin-bottom: 10px;"
+                [disabled]="loading">{{lang.t("lgin")}}</button>
+            <button mat-raised-button *ngIf="mode == 'login'" (click)="switchMode('register')"
+                [disabled]="loading">{{lang.t("torgr")}}</button>
+            <button mat-raised-button *ngIf="mode == 'register'" (click)="switchMode('login')"
+                [disabled]="loading">{{lang.t("tolgin")}}</button>
+
+        </form>
+    </mat-card>
+</div>

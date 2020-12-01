@@ -1,0 +1,42 @@
+.albums-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.album-card {
+    max-width: 250px;
+    margin: 2px;
+    flex-grow: 1;
+}
+  
+.header-image {
+    background-size: cover;
+}
+
+.album-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.letter {
+    font-size: 3vh;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin: 0;
+    color: white;
+    user-select: none;
+}
+
+.letter-c {
+    width: calc(100% + 32px);
+    min-height: 100px;
+    margin: -16px -16px 16px -16px !important;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #f44336;
+}

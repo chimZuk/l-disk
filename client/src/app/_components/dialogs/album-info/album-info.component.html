@@ -1,0 +1,17 @@
+<mat-progress-bar *ngIf="loading" color="primary" mode="indeterminate" class="loading-general"></mat-progress-bar>
+
+<form [formGroup]="album_form" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{lang.t("an")}}</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{lang.t("ad")}}</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="description">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="loading">{{lang.t("ca")}}</button>
+
+</form>

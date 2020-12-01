@@ -1,0 +1,85 @@
+/*/deep/ .mat-progress-bar .mat-progress-bar-element, .mat-progress-bar .mat-progress-bar-fill::after {
+    background-color: #ff7eaa;
+}*/
+
+/deep/ .component {
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+/deep/ .global-loading {
+    height: calc(100vh - 56px);
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/deep/ .inner-loading {
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/deep/ .inner-loading mat-spinner, 
+/deep/ .inner-loading svg {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+/deep/ .mat-toolbar-row, /deep/ .mat-toolbar-single-row, /deep/ .mat-toolbar-multiple-rows {
+    height: 56px !important;
+    min-height: unset !important;
+}
+
+/deep/ .custom-button {
+    height: 50px !important;
+    width: 50px !important;
+}
+
+/deep/ .custom-button .mat-button-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0px !important;
+    line-height: unset !important;
+    height: 50px !important;
+    width: 50px !important;
+}
+
+/deep/ .custom-button .mat-button-wrapper .avatar {
+    height: 40px;
+    width: 40px;
+}
+
+/deep/ .loading-general {
+    z-index: 9999 !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    height: 4px !important;
+}
+/deep/ .mat-card-header.mat-ripple {
+    margin-bottom: 16px !important;
+}
+
+/deep/ .mat-card-header.mat-ripple .mat-card-subtitle {
+    margin-bottom: 0px !important;
+}
+
+/deep/ .picture-locker {
+    position: absolute; 
+    top: 0px; 
+    bottom: 0px; 
+    left: 0px; 
+    right: 0px; 
+    z-index: 9999; 
+    user-select: none;
+}
