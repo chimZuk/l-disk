@@ -13,7 +13,7 @@
     </button>
 </div>
 
-<mat-card *ngIf="filesUploadArrayProgress.length != 0">
+<mat-card *ngIf="filesUploadArrayProgress.length != 0" style="margin: 5px;">
     <h2>Upload Progress:</h2>
     <div *ngFor="let photo of filesUploadArrayProgress">
         <span>{{photo.status}} {{photo.name}}: {{photo.progress}}%
@@ -27,10 +27,17 @@
             <mat-spinner></mat-spinner>
         </div>
 
-        <div class="picture-locker">
+        <div class="picture-locker" style="padding: 10px;">
+            <a mat-raised-button color="warn" [matTooltip]="lang.t('ida')" (click)="deletePhoto(photo)">
+                <mat-icon>delete</mat-icon>
+            </a>
+            <a href="{{url.api + 'normal' + photo.url}}" target="_blank" mat-raised-button color="primary" [matTooltip]="lang.t('ista')">
+                <mat-icon>share</mat-icon>
+            </a>
         </div>
 
-        <img appLazyLoad [photo]="photo" [ngClass]="{'photo-card-hidden': photo.loading, 'card-kek': true }" (load)="onImageLoad(i)" [src]="url.api + 'api/small' + photo.url" />
+        <img appLazyLoad [photo]="photo" [ngClass]="{'photo-card-hidden': photo.loading, 'card-kek': true }"
+            (load)="onImageLoad(i)" [src]="url.api + 'api/small' + photo.url" />
     </div>
 </div>
 

@@ -17,24 +17,17 @@
         <div class="letter-c" *ngIf="!album.previewURL" (click)="openAlbum(album)" style="cursor: pointer;">
             <span class="letter">{{album.previewSign}}</span>
         </div>
-        <mat-card-header matRipple (click)="openAlbum(album)" style="cursor: pointer;">
-            <div mat-card-avatar class="header-image"
-                [ngStyle]="{'background-image': 'url(' + auth.user.pictureURL + ')'}"></div>
-            <mat-card-title>{{album.name}}</mat-card-title>
-            <mat-card-subtitle>{{album.description}}</mat-card-subtitle>
-        </mat-card-header>
-        <div class="album-actions">
-            <div>
-                <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('eai')">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('da')"
-                    style="margin-left: 10px; margin-right: 10px;">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-            <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('sta')">
-                <mat-icon>share</mat-icon>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <mat-card-header matRipple (click)="openAlbum(album)" style="cursor: pointer;">
+                <div mat-card-avatar class="header-image"
+                    [ngStyle]="{'background-image': 'url(' + auth.user.pictureURL + ')'}"></div>
+                <mat-card-title>{{album.name}}</mat-card-title>
+                <mat-card-subtitle>{{album.description}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <button mat-stroked-button (click)="deleteAlbum(album)" [matTooltip]="lang.t('da')"
+                style="margin-left: 10px; margin-right: 10px;">
+                <mat-icon>delete</mat-icon>
             </button>
         </div>
     </mat-card>

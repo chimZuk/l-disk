@@ -13,6 +13,7 @@ export class LanguageService {
   library: any = {
     en: {
       a: "Albums",
+      p: "Photos",
       s: "Shared",
       na: "New Album",
       ma: "My Albums",
@@ -23,6 +24,8 @@ export class LanguageService {
       eai: "Edit Album Information",
       da: "Delete Album",
       sta: "Share Album",
+      ida: "Delete Photo",
+      ista: "Share Photo",
       an: "Album Name",
       ad: "Album Description",
       ca: "Create Album",
@@ -44,6 +47,7 @@ export class LanguageService {
     },
     ru: {
       a: "Альбомы",
+      p: "Фото",
       s: "Общее",
       na: "Новый Албом",
       ma: "Мои Альбомы",
@@ -54,6 +58,8 @@ export class LanguageService {
       eai: "Редактировать Альбом",
       da: "Удалить Альбом",
       sta: "Поделиться",
+      ida: "Удалить Фото",
+      ista: "Поделиться",
       an: "Название Альбома",
       ad: "Описание Альбома",
       ca: "Создать Альбом",

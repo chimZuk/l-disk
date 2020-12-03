@@ -21,15 +21,14 @@ server {
         ssl_certificate /etc/letsencrypt/live/photos.chimzuk.com/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/photos.chimzuk.com/privkey.pem;
 
-        location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
+        location /normal {
                 client_max_body_size 0;
-                root /home/ubuntu/l-disk/server/dist;
-                index index.html;
-                try_files $uri $uri/ /;
+                proxy_pass https://localhost:8001;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto https;
         }
-
         location /api {
                 client_max_body_size 0;
                 proxy_pass https://localhost:8001;
@@ -38,7 +37,14 @@ server {
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Forwarded-Proto https;
         }
-
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                client_max_body_size 0;
+                root /home/ubuntu/l-disk/server/dist;
+                index index.html;
+                try_files $uri $uri/ /;
+        }
         location ~ /.well-known {
                 allow all;
         }

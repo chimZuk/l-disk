@@ -46,13 +46,6 @@
                     <h4 mat-line *ngIf="isExpanded || mobileQuery.matches">{{lang.t("ma")}}</h4>
                 </mat-list-item>
 
-                <mat-list-item (click)="menuAction('shared')"
-                    [ngClass]="{'current': pageName.indexOf('/shared') > -1 }">
-                    <mat-icon mat-list-icon>folder_shared
-                    </mat-icon>
-                    <h4 mat-line *ngIf="isExpanded || mobileQuery.matches" style="padding-right: 20px;">{{lang.t("sh")}}</h4>
-                </mat-list-item>
-
             </mat-nav-list>
 
         </mat-drawer>
@@ -65,14 +58,6 @@
 </div>
 
 <mat-menu #profile_menu="matMenu">
-    <button mat-menu-item (click)="popupAction('profile-info')">
-        <mat-icon>edit</mat-icon>
-        <span>{{lang.t("ep")}}</span>
-    </button>
-    <button mat-menu-item (click)="popupAction('profile-settings')">
-        <mat-icon>build</mat-icon>
-        <span>{{lang.t("eps")}}</span>
-    </button>
     <button mat-menu-item (click)="auth.logout();">
         <mat-icon>exit_to_app</mat-icon>
         <span>{{lang.t("lg")}}</span>

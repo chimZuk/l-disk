@@ -91,7 +91,7 @@ export class FileBrowserPageComponent implements OnInit {
       }
       default: {
         if (route.indexOf("/photos") > -1) {
-          this.title = this.lang.t("a");
+          this.title = this.lang.t("p");
           this.home = "albums";
           this.isHome = false;
           break;
